@@ -1,7 +1,8 @@
 package com.demo.receipt.ui.main
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+    lateinit var currentPhotoPath: Uri
 }
