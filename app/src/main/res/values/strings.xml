@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="total_amount_hint">total</string>
+    <string name="currency_hint">currency</string>
 </resources>

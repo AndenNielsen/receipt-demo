@@ -1,7 +1,8 @@
 package com.demo.receipt
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 
 class ReceiptDetailsViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+    var imageUri: Uri? = null
 }

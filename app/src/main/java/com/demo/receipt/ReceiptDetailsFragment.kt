@@ -4,28 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import com.demo.receipt.databinding.ReceiptDetailsFragmentBinding
 
 class ReceiptDetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ReceiptDetailsFragment()
-    }
-
     private lateinit var viewModel: ReceiptDetailsViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ReceiptDetailsViewModel::class.java)
+        viewModel.imageUri = arguments?.let { ReceiptDetailsFragmentArgs.fromBundle(it).imageUri }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.receipt_details_fragment, container, false)
+        val binding: ReceiptDetailsFragmentBinding =
+            DataBindingUtil.inflate(inflater, R.layout.receipt_details_fragment, container, false)
+        binding.viewModel = viewModel
+        return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ReceiptDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

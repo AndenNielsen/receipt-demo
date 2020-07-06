@@ -12,15 +12,15 @@
         tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_receiptDetailsFragment"
-            app:destination="@id/receiptDetailsFragment">
-            <argument
-                android:name="imageUri"
-                app:argType="android.net.Uri" />
-        </action>
+            app:destination="@id/receiptDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/receiptDetailsFragment"
         android:name="com.demo.receipt.ReceiptDetailsFragment"
         android:label="receipt_details_fragment"
-        tools:layout="@layout/receipt_details_fragment" />
+        tools:layout="@layout/receipt_details_fragment">
+        <argument
+            android:name="imageUri"
+            app:argType="android.net.Uri" />
+    </fragment>
 </navigation>
