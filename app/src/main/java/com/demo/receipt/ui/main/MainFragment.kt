@@ -7,22 +7,23 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.demo.receipt.R
 import com.demo.receipt.getPhotoURI
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private lateinit var viewModel: MainViewModel
 
     private val takePicture =
-        registerForActivityResult(ActivityResultContracts.TakePicture()) { result ->
-            result?.let {
-                // todo handle image
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            success?.let {
+                if (success) {
+                    val action =
+                        MainFragmentDirections.actionMainFragmentToReceiptDetailsFragment(viewModel.currentPhotoPath)
+                    findNavController().navigate(action)
+                }
             }
         }
 
