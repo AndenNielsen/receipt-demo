@@ -1,4 +1,4 @@
-package com.demo.receipt
+package com.demo.receipt.ui.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.demo.receipt.R
+import com.demo.receipt.ReceiptDetailsFragmentArgs
 import com.demo.receipt.databinding.ReceiptDetailsFragmentBinding
 
 class ReceiptDetailsFragment : Fragment() {
@@ -16,7 +18,11 @@ class ReceiptDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ReceiptDetailsViewModel::class.java)
-        viewModel.imageUri = arguments?.let { ReceiptDetailsFragmentArgs.fromBundle(it).imageUri }
+        viewModel.imageUri = arguments?.let {
+            ReceiptDetailsFragmentArgs.fromBundle(
+                it
+            ).imageUri
+        }
     }
 
     override fun onCreateView(
@@ -24,7 +30,10 @@ class ReceiptDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: ReceiptDetailsFragmentBinding =
-            DataBindingUtil.inflate(inflater, R.layout.receipt_details_fragment, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.receipt_details_fragment, container, false
+            )
         binding.viewModel = viewModel
         return binding.root
     }

@@ -1,4 +1,4 @@
-package com.demo.receipt
+package com.demo.receipt.ui.details
 
 import android.net.Uri
 import android.util.Log

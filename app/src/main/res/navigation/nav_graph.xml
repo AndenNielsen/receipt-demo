@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/receiptDetailsFragment"
-        android:name="com.demo.receipt.ReceiptDetailsFragment"
+        android:name="com.demo.receipt.ui.details.ReceiptDetailsFragment"
         android:label="receipt_details_fragment"
         tools:layout="@layout/receipt_details_fragment">
         <argument
