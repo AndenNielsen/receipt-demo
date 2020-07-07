@@ -6,18 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.demo.receipt.R
-import com.demo.receipt.ReceiptDetailsFragmentArgs
 import com.demo.receipt.databinding.ReceiptDetailsFragmentBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ReceiptDetailsFragment : Fragment() {
 
-    private lateinit var viewModel: ReceiptDetailsViewModel
+    private val viewModel: ReceiptDetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ReceiptDetailsViewModel::class.java)
         viewModel.imageUri = arguments?.let {
             ReceiptDetailsFragmentArgs.fromBundle(
                 it
