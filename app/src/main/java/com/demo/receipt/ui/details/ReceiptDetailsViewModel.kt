@@ -1,11 +1,12 @@
 package com.demo.receipt.ui.details
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.demo.receipt.data.Receipt
+import com.demo.receipt.data.ReceiptRepository
 
-class ReceiptDetailsViewModel : ViewModel() {
+class ReceiptDetailsViewModel(private val receiptRepository: ReceiptRepository) : ViewModel() {
+
     var description: String = ""
     var totalAmount: String = ""
     var currency: String = ""
@@ -20,6 +21,6 @@ class ReceiptDetailsViewModel : ViewModel() {
             date = date,
             imageUri = imageUri.toString()
         )
-        Log.d("save", "receipt: $receipt")
+        receiptRepository.saveReceipt(receipt)
     }
 }
