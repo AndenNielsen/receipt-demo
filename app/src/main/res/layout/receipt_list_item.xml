@@ -19,7 +19,7 @@
             android:id="@+id/imageView"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@{item.imageUri}"
+            app:imageUri="@{item.imageUri}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
