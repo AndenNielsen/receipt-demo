@@ -1,19 +1,24 @@
 package com.demo.receipt.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.demo.receipt.R
+import com.demo.receipt.databinding.MainFragmentBinding
 import com.demo.receipt.getPhotoURI
 import kotlinx.android.synthetic.main.main_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
 
+    private lateinit var adapter: ReceiptsListAdapter
     private val viewModel: MainViewModel by viewModel()
 
     private val takePicture =
@@ -31,11 +36,25 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        val binding: MainFragmentBinding =
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.main_fragment, container, false
+            )
+        binding.viewModel = viewModel
+        adapter = ReceiptsListAdapter()
+        binding.receiptList.adapter = adapter
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.receipts.observe(viewLifecycleOwner, Observer {
+            it.let {
+                Log.d("receipts", "receipts: $it")
+                adapter.submitList(it)
+            }
+        })
         addReceiptButton.setOnClickListener {
             getPhotoURI(requireContext())?.let {
                 viewModel.currentPhotoPath = it

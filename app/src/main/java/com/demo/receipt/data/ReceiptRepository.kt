@@ -1,7 +1,7 @@
 package com.demo.receipt.data
 
 import androidx.annotation.WorkerThread
-import kotlinx.coroutines.flow.Flow
+import androidx.lifecycle.LiveData
 
 class ReceiptRepository(private val receiptDao: ReceiptDao) {
 
@@ -10,7 +10,8 @@ class ReceiptRepository(private val receiptDao: ReceiptDao) {
         receiptDao.saveReceipt(receipt)
     }
 
-    fun getReceipts(): List<Receipt> {
-        return listOf()
+    @WorkerThread
+    fun getReceipts(): LiveData<List<Receipt>> {
+        return receiptDao.getReceipts()
     }
 }

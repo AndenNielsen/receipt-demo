@@ -1,9 +1,9 @@
 package com.demo.receipt.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ReceiptDao {
@@ -15,5 +15,5 @@ interface ReceiptDao {
     fun saveReceipt(receipt: Receipt): Long
 
     @Query("SELECT * FROM receipts")
-    fun getReceipts(): Flow<List<Receipt>>
+    fun getReceipts(): LiveData<List<Receipt>>
 }
