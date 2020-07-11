@@ -9,7 +9,6 @@ import com.demo.receipt.ui.Receipt
 
 
 class MainViewModel(private val receiptRepository: ReceiptRepository) : ViewModel() {
-    lateinit var currentPhotoPath: Uri
 
     val receipts: LiveData<List<Receipt>>
         get() =

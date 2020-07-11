@@ -1,6 +1,7 @@
 package com.demo.receipt.ui.details
 
 import android.net.Uri
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demo.receipt.data.Receipt
@@ -14,7 +15,7 @@ class ReceiptDetailsViewModel(private val receiptRepository: ReceiptRepository) 
     var totalAmount: String = ""
     var currency: String = ""
     var date: String = ""
-    var imageUri: Uri? = null
+    var imageUri: ObservableField<Uri> = ObservableField()
 
     fun saveReceipt() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -23,7 +24,7 @@ class ReceiptDetailsViewModel(private val receiptRepository: ReceiptRepository) 
                 totalAmount = totalAmount.toDouble(),
                 currency = currency,
                 date = date,
-                imageUri = imageUri.toString()
+                imageUri = imageUri.get().toString()
             )
             receiptRepository.saveReceipt(receipt)
         }

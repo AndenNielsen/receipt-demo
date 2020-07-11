@@ -6,6 +6,6 @@ import androidx.databinding.BindingAdapter
 import coil.api.load
 
 @BindingAdapter("imageUri")
-fun bindImageUri(imageView: ImageView, uri: Uri) {
+fun bindImageUri(imageView: ImageView, uri: Uri?) {
     imageView.load(uri)
 }

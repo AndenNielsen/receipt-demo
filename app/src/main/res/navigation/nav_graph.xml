@@ -18,9 +18,5 @@
         android:id="@+id/receiptDetailsFragment"
         android:name="com.demo.receipt.ui.details.ReceiptDetailsFragment"
         android:label="receipt_details_fragment"
-        tools:layout="@layout/receipt_details_fragment">
-        <argument
-            android:name="imageUri"
-            app:argType="android.net.Uri" />
-    </fragment>
+        tools:layout="@layout/receipt_details_fragment" />
 </navigation>
