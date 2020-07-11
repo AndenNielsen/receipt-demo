@@ -1,7 +1,6 @@
 package com.demo.receipt.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +50,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.receipts.observe(viewLifecycleOwner, Observer {
             it.let {
-                Log.d("receipts", "receipts: $it")
                 adapter.submitList(it)
             }
         })

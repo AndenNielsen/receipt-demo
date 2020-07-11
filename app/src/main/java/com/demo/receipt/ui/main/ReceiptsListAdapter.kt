@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.demo.receipt.data.Receipt
 import com.demo.receipt.databinding.ReceiptListItemBinding
+import com.demo.receipt.ui.Receipt
 
 
 class ReceiptsListAdapter :
