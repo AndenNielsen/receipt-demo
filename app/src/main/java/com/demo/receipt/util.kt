@@ -4,6 +4,8 @@ import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import androidx.core.content.FileProvider
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.GlobalContext
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -20,8 +22,9 @@ private fun createImageFile(context: Context): File {
     )
 }
 
-fun getPhotoURI(context: Context): Uri? {
+fun getPhotoURI(): Uri? {
 // Create the File where the photo should go
+    val context = GlobalContext.get().koin.rootScope.androidContext()
     val photoFile: File? = try {
         createImageFile(context)
     } catch (ex: IOException) {

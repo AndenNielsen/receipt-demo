@@ -15,6 +15,6 @@ interface ReceiptDao {
     @Insert
     fun saveReceipt(receipt: Receipt): Long
 
-    @Query("SELECT * FROM receipts")
+    @Query("SELECT * FROM receipts ORDER BY id DESC")
     fun getReceipts(): LiveData<List<Receipt>>
 }

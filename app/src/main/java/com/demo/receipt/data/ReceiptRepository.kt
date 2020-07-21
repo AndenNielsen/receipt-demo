@@ -7,8 +7,8 @@ import com.demo.receipt.data.db.ReceiptDao
 class ReceiptRepository(private val receiptDao: ReceiptDao) {
 
     @WorkerThread
-    fun saveReceipt(receipt: Receipt) {
-        receiptDao.saveReceipt(receipt)
+    fun saveReceipt(receipt: Receipt): Long {
+        return receiptDao.saveReceipt(receipt)
     }
 
     @WorkerThread
