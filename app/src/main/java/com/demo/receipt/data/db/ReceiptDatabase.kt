@@ -1,9 +1,10 @@
-package com.demo.receipt.data
+package com.demo.receipt.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.demo.receipt.data.Receipt
 
 @Database(
     entities = [Receipt::class],
@@ -16,8 +17,11 @@ abstract class ReceiptDatabase : RoomDatabase() {
         private const val databaseName = "receipts-db"
 
         fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, ReceiptDatabase::class.java, databaseName)
-                .fallbackToDestructiveMigration()
+            Room.databaseBuilder(
+                context, ReceiptDatabase::class.java,
+                databaseName
+            )
+                .fallbackToDestructiveMigration() // todo use versioning
                 .build()
     }
 }

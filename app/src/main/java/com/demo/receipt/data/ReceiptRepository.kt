@@ -2,6 +2,7 @@ package com.demo.receipt.data
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import com.demo.receipt.data.db.ReceiptDao
 
 class ReceiptRepository(private val receiptDao: ReceiptDao) {
 
