@@ -21,7 +21,7 @@ class ReceiptDetailsViewModel(private val receiptRepository: ReceiptRepository) 
 
     private lateinit var photoPath: File
     var description: String = ""
-    var totalAmount: String = ""
+    var totalAmount: String? = null
     var currency: String = ""
     var date: String = ""
     val imageUri: ObservableField<Uri?> = ObservableField()
@@ -68,7 +68,7 @@ class ReceiptDetailsViewModel(private val receiptRepository: ReceiptRepository) 
         viewModelScope.launch(Dispatchers.IO) {
             val receipt = Receipt(
                 description = description,
-                totalAmount = totalAmount.toDouble(),
+                totalAmount = totalAmount?.toDouble() ?: 0.0,
                 currency = currency,
                 date = date,
                 imageUri = imageUri.get().toString()
