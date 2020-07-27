@@ -25,6 +25,18 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
+        <Button
+            android:id="@+id/addPhotoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{_ -> viewModel.preparePhotoPath()}"
+            android:text="@string/add_photo_button_text"
+            android:visibility="@{viewModel.showAddPhotoButton}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
         <EditText
             android:id="@+id/totalAmountInput"
             android:layout_width="0dp"

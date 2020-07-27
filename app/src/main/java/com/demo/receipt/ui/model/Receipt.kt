@@ -1,4 +1,4 @@
-package com.demo.receipt.ui
+package com.demo.receipt.ui.model
 
 import android.net.Uri
 import java.text.NumberFormat

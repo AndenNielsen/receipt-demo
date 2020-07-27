@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.demo.receipt.ui.Receipt" />
+            type="com.demo.receipt.ui.model.Receipt" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

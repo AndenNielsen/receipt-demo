@@ -3,5 +3,6 @@
     <string name="total_amount_hint">total</string>
     <string name="currency_hint">currency</string>
     <string name="button_text">Save</string>
+    <string name="add_photo_button_text">Add Photo</string>
     <string name="description_hint">Description</string>
 </resources>

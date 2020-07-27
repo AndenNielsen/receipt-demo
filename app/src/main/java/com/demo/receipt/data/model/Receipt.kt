@@ -1,4 +1,4 @@
-package com.demo.receipt.data
+package com.demo.receipt.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
