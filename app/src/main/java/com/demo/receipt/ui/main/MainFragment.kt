@@ -30,16 +30,18 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
         adapter = ReceiptsListAdapter()
         binding.receiptList.adapter = adapter
+
+        viewModel.getReceipts().observe(viewLifecycleOwner, Observer {
+            it.let {
+                adapter.submitList(it)
+            }
+        })
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.receipts.observe(viewLifecycleOwner, Observer {
-            it.let {
-                adapter.submitList(it)
-            }
-        })
 
         addReceiptButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_receiptDetailsFragment)
