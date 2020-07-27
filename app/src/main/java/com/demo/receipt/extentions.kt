@@ -16,7 +16,11 @@ fun View.hideSoftKeyboard() {
     imm.hideSoftInputFromWindow(windowToken, 0)
 }
 
-fun File.writeBitmap(bitmap: Bitmap, format: Bitmap.CompressFormat, quality: Int) {
+fun File.writeBitmap(
+    bitmap: Bitmap,
+    format: Bitmap.CompressFormat = Bitmap.CompressFormat.WEBP,
+    quality: Int = 50
+) {
     outputStream().use { out ->
         bitmap.compress(format, quality, out)
         out.flush()

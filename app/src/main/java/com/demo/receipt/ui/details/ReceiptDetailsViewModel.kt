@@ -1,10 +1,6 @@
 package com.demo.receipt.ui.details
 
-import android.graphics.Bitmap
-import android.media.ThumbnailUtils
 import android.net.Uri
-import android.os.CancellationSignal
-import android.util.Size
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
@@ -13,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demo.receipt.data.ReceiptRepository
 import com.demo.receipt.data.model.Receipt
+import com.demo.receipt.downscaleToMaxAllowedDimension
 import com.demo.receipt.getFileForPhoto
 import com.demo.receipt.getUri
 import com.demo.receipt.writeBitmap
@@ -46,16 +43,12 @@ class ReceiptDetailsViewModel(private val receiptRepository: ReceiptRepository) 
     fun processPhoto() {
         viewModelScope.launch(Dispatchers.IO) {
             getFileForPhoto()?.apply {
-                val bitmap = ThumbnailUtils.createImageThumbnail(
-                    photoPath,
-                    Size(1024, 1024),
-                    CancellationSignal()
-                )
-                writeBitmap(
-                    bitmap,
-                    Bitmap.CompressFormat.WEBP,
-                    50
-                )
+                val bitmap =
+                    downscaleToMaxAllowedDimension(photoPath.absolutePath)
+
+                bitmap?.let {
+                    writeBitmap(it)
+                }
                 imageUri.set(getUri())
             }
         }
