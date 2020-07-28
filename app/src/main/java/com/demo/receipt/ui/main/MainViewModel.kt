@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-
 class MainViewModel(private val receiptRepository: ReceiptRepository) : ViewModel() {
 
     private val receipts = MutableLiveData<List<Receipt>>()
@@ -38,7 +37,8 @@ class MainViewModel(private val receiptRepository: ReceiptRepository) : ViewMode
                             Uri.parse(it.imageUri)
                         )
                     }
-                }.collect { receipts.value = it }
+                }
+                .collect { receipts.value = it }
         }
     }
 }

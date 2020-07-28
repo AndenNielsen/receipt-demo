@@ -5,7 +5,6 @@ import com.demo.receipt.data.db.ReceiptDao
 import com.demo.receipt.data.model.Receipt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class ReceiptRepository(private val receiptDao: ReceiptDao) {
@@ -15,11 +14,7 @@ class ReceiptRepository(private val receiptDao: ReceiptDao) {
         return receiptDao.saveReceipt(receipt)
     }
 
-    @WorkerThread
-    fun getReceipts(): Flow<List<Receipt>> {
-        return flow {
-            emit(receiptDao.getReceipts())
-        }
+    fun getReceipts(): Flow<List<Receipt>> =
+        receiptDao.getReceipts()
             .flowOn(Dispatchers.IO)
-    }
 }
