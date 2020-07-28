@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demo.receipt.data.ReceiptRepository
 import com.demo.receipt.ui.model.Receipt
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -24,7 +25,7 @@ class MainViewModel(private val receiptRepository: ReceiptRepository) : ViewMode
     }
 
     private fun fetchReceipts() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             receiptRepository.getReceipts()
                 .map { receipts ->
                     receipts.map {
@@ -38,7 +39,7 @@ class MainViewModel(private val receiptRepository: ReceiptRepository) : ViewMode
                         )
                     }
                 }
-                .collect { receipts.value = it }
+                .collect { receipts.postValue(it) }
         }
     }
 }
